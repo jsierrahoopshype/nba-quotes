@@ -1,0 +1,227 @@
+/* ==========================================================================
+   HoopsMatic NBA quotes: shared stylesheet.
+   Tokens and components (fonts, colors, tabs, stat cards, sections, search,
+   chips) are copied from the NBA Polymarket tracker so both tools read as one
+   family. Written mobile-first: base rules are the phone layout, the
+   min-width query below widens things for desktop.
+   ========================================================================== */
+
+/* Fonts are served from this site (no other host): DM Sans and JetBrains Mono, OFL. */
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dm-sans-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/dm-sans-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/dm-sans-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/dm-sans-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/dm-sans-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/dm-sans-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/dm-sans-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/dm-sans-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/jetbrains-mono-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/jetbrains-mono-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/jetbrains-mono-latin-600-normal.woff2) format('woff2')}
+
+:root{
+  --bg:#f5f5f7;--surface:#fff;--surface-hover:#f0f0f2;--border:#d1d1d6;
+  --text:#1d1d1f;--text-secondary:#6e6e73;--accent:#3b82f6;--accent-dim:rgba(59,130,246,.15);
+  --green:#1d8a40;--green-dim:rgba(52,199,89,.16);--green-bar:#34c759;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:115%}
+body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);
+  color:var(--text);min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:1rem 1rem 3rem}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* nav tabs */
+.tabs{display:flex;gap:.3rem;margin-bottom:1rem;flex-wrap:wrap}
+.tabs a{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;padding:.4rem .8rem;
+  border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-secondary);text-decoration:none}
+.tabs a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.tabs a.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* page header */
+.phead{border-bottom:1px solid var(--border);padding-bottom:1rem;margin-bottom:1.1rem}
+.phead h1{font-size:1.3rem;font-weight:700;letter-spacing:-.02em;line-height:1.25}
+.phead .lede{color:var(--text-secondary);font-size:.86rem;margin-top:.45rem;max-width:60rem}
+.phead .meta{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--text-secondary);
+  margin-top:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.phead .meta .sep{opacity:.5}
+
+/* stat cards */
+.stat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:1.1rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.7rem .6rem;min-width:0}
+.stat-card .lbl{font-size:.6rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.06em;
+  font-weight:600;margin-bottom:.3rem}
+.stat-card .num{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700;letter-spacing:-.02em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat-card .num.sm{font-size:.78rem;white-space:normal;line-height:1.3;padding-top:.2rem}
+
+/* sections */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;margin-bottom:1.1rem}
+.section h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary);
+  font-weight:600;margin-bottom:.6rem}
+.section .hint{font-size:.74rem;color:var(--text-secondary);margin:-.3rem 0 .7rem}
+
+/* timeline strip: one bar per season, links jump to that season */
+.tl{display:flex;align-items:flex-end;gap:2px;height:3.4rem}
+.tl a,.tl span.tlb{flex:1 1 0;min-width:0;height:100%;display:flex;align-items:flex-end}
+.tl i{display:block;width:100%;background:var(--accent);border-radius:2px 2px 0 0;min-height:2px}
+.tl a:hover i{background:var(--green)}
+.tl span.tlb i{background:var(--border)}
+.tl-axis{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  color:var(--text-secondary);margin-top:.3rem}
+
+/* ranked name lists (top speakers, related pairs) */
+.plist{list-style:none;display:flex;flex-direction:column}
+.plist li{display:flex;align-items:baseline;justify-content:space-between;gap:.8rem;padding:.4rem 0;
+  border-bottom:1px solid var(--border);font-size:.88rem}
+.plist li:last-child{border-bottom:none}
+.plist .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.plist .nm a{color:var(--text);font-weight:500}
+.plist .nm a:hover{color:var(--accent)}
+.plist .ct{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-secondary);flex-shrink:0}
+
+/* season groups and quote cards */
+.season{margin-bottom:1.3rem;scroll-margin-top:1rem}
+.season-head{display:flex;align-items:baseline;gap:.5rem;margin:0 0 .5rem .1rem}
+.season-head h2{font-size:.95rem;font-weight:700}
+.season-head .ct{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--text-secondary)}
+.qc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.8rem .9rem;margin-bottom:.55rem}
+.qc blockquote{font-size:.95rem;line-height:1.5;color:var(--text);overflow-wrap:anywhere}
+.qc .ctx{font-size:.8rem;line-height:1.45;color:var(--text-secondary);margin-bottom:.4rem;overflow-wrap:anywhere}
+.qc .qm{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text-secondary);margin-top:.5rem;
+  display:flex;flex-wrap:wrap;gap:.2rem .5rem;align-items:baseline}
+.qc .qm .who{font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;color:var(--text)}
+.qc .qm .who a{color:var(--text)}
+.qc .qm .who a:hover{color:var(--accent)}
+.qc .qm .on{font-weight:400;color:var(--text-secondary)}
+.qc .qm .src a{font-weight:600}
+
+/* chips (season switcher on ranking pages) */
+.chips{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1rem}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;padding:.3rem .6rem;
+  border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-secondary);
+  white-space:nowrap;text-decoration:none}
+.chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ranking rows */
+.rk{list-style:none;counter-reset:none}
+.rk li{display:grid;grid-template-columns:2rem 1fr auto;gap:.2rem .6rem;align-items:baseline;
+  padding:.55rem 0;border-bottom:1px solid var(--border)}
+.rk li:last-child{border-bottom:none}
+.rk .r{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+.rk .n{font-weight:600;font-size:.92rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rk .n a{color:var(--text)}.rk .n a:hover{color:var(--accent)}
+.rk .v{font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:600;text-align:right;white-space:nowrap}
+.rk .v small{font-weight:400;color:var(--text-secondary)}
+.rk .by{grid-column:2 / 4;font-size:.74rem;color:var(--text-secondary)}
+.rk .by a{color:var(--text-secondary);text-decoration:underline;text-decoration-color:var(--border)}
+
+/* hub: name grid and search */
+.egrid{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem}
+.ecard{display:flex;align-items:center;gap:.6rem;min-width:0;padding:.5rem .7rem;border:1px solid var(--border);
+  border-radius:10px;background:var(--surface);color:var(--text);text-decoration:none;transition:.12s}
+.ecard:hover{border-color:var(--accent);text-decoration:none}
+.ecard .en{flex:1;font-weight:600;font-size:.86rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ecard .ec{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text-secondary);flex-shrink:0}
+.gsearch-wrap{position:relative;margin:0 0 1.1rem}
+.gsearch{width:100%;padding:.6rem .9rem;font-size:16px;font-family:inherit;border:1px solid var(--border);
+  border-radius:10px;background:var(--surface);color:var(--text)}
+.gsearch:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.gsearch-results{position:absolute;top:100%;left:0;right:0;margin-top:.25rem;background:var(--surface);
+  border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);
+  max-height:22rem;overflow-y:auto;z-index:200;display:none}
+.gsearch-results.open{display:block}
+.gs-item{display:flex;align-items:baseline;gap:.55rem;padding:.55rem .8rem;border-bottom:1px solid var(--border);color:var(--text)}
+.gs-item:last-child{border-bottom:none}
+.gs-main{flex:1;font-size:.88rem;font-weight:600;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gs-links{display:flex;gap:.6rem;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600}
+.gs-empty{padding:.7rem .8rem;font-size:.8rem;color:var(--text-secondary)}
+
+.back{font-size:.76rem;font-family:'JetBrains Mono',monospace;color:var(--text-secondary);display:inline-block;margin-bottom:.8rem}
+.back:hover{color:var(--accent);text-decoration:none}
+.foot{text-align:center;font-size:.7rem;color:var(--text-secondary);margin-top:1.6rem;
+  font-family:'JetBrains Mono',monospace;line-height:1.7}
+
+@media(min-width:700px){
+  .egrid{grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+  .egrid .ecard{min-width:0}
+}
+@media(min-width:861px){
+  .container{padding:1.5rem 1.5rem 4rem}
+  .phead h1{font-size:1.6rem}
+  .phead .lede{font-size:.9rem}
+  .stat-cards{gap:.8rem;margin-bottom:1.2rem}
+  .stat-card{padding:.9rem 1rem}
+  .stat-card .num{font-size:1.7rem}
+  .stat-card .num.sm{font-size:1.2rem}
+  .section{padding:1.1rem 1.2rem}
+  .tl{height:4.2rem;gap:3px}
+  .qc{padding:.9rem 1.1rem}
+  .qc blockquote{font-size:1rem}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:0 1.1rem}
+}
+
+/* ---- faces: headshot or initials circle ---- */
+/* Photos and initials share one circle: same size per context, same backdrop (#eef0f3; #14161a
+   when the page runs in a dark theme). head-uniform images are transparent cutouts. */
+:root{--av-bg:#eef0f3;--av-text:#6e6e73}
+:root[data-theme="dark"],html.dark{--av-bg:#14161a;--av-text:#a1a1a6}
+.av{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:50%;
+  background:var(--av-bg);color:var(--av-text);font-family:'DM Sans',sans-serif;font-weight:700;
+  overflow:hidden;vertical-align:middle;object-fit:cover;line-height:1}
+.av-xs{width:22px;height:22px;font-size:.55rem}
+.av-s{width:28px;height:28px;font-size:.62rem}
+.av-m{width:36px;height:36px;font-size:.72rem}
+.av-l{width:64px;height:64px;font-size:1.2rem;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--border)}
+.faces{display:flex;margin-bottom:.7rem}
+.faces .av-l+.av-l{margin-left:-14px}
+.qc .qm .who{display:inline-flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.plist .nm{display:flex;align-items:center;gap:.5rem}
+.plist .nm a,.plist .nm span.t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ecard .av{margin-right:-.1rem}
+.rk .n{display:flex;align-items:center;gap:.5rem}
+.rk .n a{min-width:0;overflow:hidden;text-overflow:ellipsis}
+
+/* ---- bold sentence inside a quote ---- */
+.qc blockquote strong{font-weight:700;color:var(--text)}
+
+/* ---- season chart (inline SVG) ---- */
+.sc{display:block;width:100%;max-width:720px;height:auto;overflow:visible}
+.sc .sc-l{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;fill:var(--text-secondary)}
+.sc .sc-a{font-family:'JetBrains Mono',monospace;font-size:10px;fill:var(--text-secondary)}
+.sc .sc-about{fill:var(--accent)}
+.sc .sc-by{fill:var(--green-bar,#34c759)}
+.sc .sc-0{fill:var(--border)}
+.sc a:hover rect,.sc a:focus rect{opacity:.75}
+.sc a:focus{outline:none}
+.sc a:focus-visible rect{stroke:var(--text);stroke-width:1.5}
+
+/* ---- footer and photo credits ---- */
+footer.foot p{margin:0}
+footer.foot a{color:var(--text-secondary);text-decoration:underline;text-decoration-color:var(--border)}
+footer.foot a:hover{color:var(--accent)}
+.credits-link{text-align:center;font-size:.68rem;font-family:'JetBrains Mono',monospace;margin-top:1.2rem}
+.credits-link a{color:var(--text-secondary)}
+.plist.credits li{flex-wrap:wrap;align-items:center}
+.plist.credits .cr{font-size:.72rem;color:var(--text-secondary);min-width:0;overflow-wrap:anywhere}
+
+/* ---- best quotes block (person, pair and mutual pages) ---- */
+.best{margin-bottom:1.1rem}
+.best h2{font-size:.95rem;font-weight:700;margin:0 0 .5rem .1rem}
+.best .qc{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-dim)}
+
+/* ---- front page: plain headings (no small-caps labels), cards inside sections ---- */
+.hub-sec h2{font-size:1rem;font-weight:700;text-transform:none;letter-spacing:-.01em;color:var(--text);margin-bottom:.7rem}
+.hub-sec .qc{box-shadow:none}
+.hub-sec .qc:last-child{margin-bottom:0}
+.hub-sec.qotd .qc{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-dim)}
+.hub-sec.qotd blockquote{font-size:1.05rem}
+.hub-sec .more{margin-top:.6rem;font-size:.8rem;font-family:'JetBrains Mono',monospace}
+.hub-sec .hint{margin:0 0 .6rem}
+.feed-link{text-align:center;font-size:.72rem;font-family:'JetBrains Mono',monospace;margin-top:.4rem}
+.feed-link a{color:var(--text-secondary)}
+@media(min-width:861px){
+  .hub-sec.qotd blockquote{font-size:1.15rem}
+}
